@@ -9,4 +9,4 @@ Then, browse it with the address
 `http://localhost:3000/`
 
 # Screenshoot
-![Employee Directory App](./imageApp.png "Employee Directory App")
+![Employee Directory App](./employeeApp.png "Employee Directory App")
