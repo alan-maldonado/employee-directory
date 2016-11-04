@@ -1,0 +1,28 @@
+import _ from 'lodash';
+
+import { Meteor } from 'meteor/meteor';
+import { Employees } from '../imports/collections/employees';
+import { image, helpers } from 'faker';
+
+import faker from 'faker';
+
+Meteor.startup(() => {
+
+  const numberRecords = Employees.find({}).count();
+
+  if (!numberRecords) {
+    _.times(5000, () => {
+      const { name, email, phone } = helpers.createCard();
+
+      Employees.insert({
+        name, email, phone, avatar: image.avatar()
+      });
+    });
+  }
+
+  console.log(numberRecords);
+
+  Meteor.publish('employees', function(per_page) {
+    return Employees.find({}, { limit: per_page });
+  })
+});
